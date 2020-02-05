@@ -1,7 +1,8 @@
 # Elevator API
 
-#Application informations
-##Aplication details
+# Application informations
+
+## Aplication details
 Application provides API for elevator system controller - elevator and utils packages.
 It also provides app package used to simulate elevator and passengers behaviour.
 In app package there are 3 classes: 
@@ -12,14 +13,14 @@ step into elevator's cart and carts make their move between floors if possible.
 - Passenger is a model of passenger which makes one request from one floor and when
 he steps into cart he makes requests for his destination floor. 
 - PassengerFactory is used to randomly generate new passengers.
-##How to run
+## How to run
 #### With IDE
 To run application with IDE simply import project as Maven project and run main class.
 In main folder there is config.properties file which can be used to change simulation parameters.
-####As Jar
+#### As Jar
 In  folder there is .jar file which use same config file. 
 Simply type "java -jar elevator-1.0.jar" from main folder.
-#API features
+# API features
 ElevatorSystem class is the main controller of whole system. 
 It provides public API for requesting cart, adding destination request from the cart, 
 making step for each cart, and getting information about floors and carts.
@@ -28,14 +29,14 @@ ElevatorCart class provides public methods to check current floor and whether ca
 
 Utils package contains two Enums used to indicate request's and cart's direction.
 
-####Main idea of elevator system:
+#### Main idea of elevator system:
 - Passenger pushes button whether he wants to go up or down.
 - Elevator system checks request's floor, direction and calculates metric distance for each cart.
 - System choose cart with greatest fitness value and assign it to request, adding floor to cart's requests set.
 - When passenger is in the cart he can use control panel to choose his destination floor.
 - System adds this floor to cart's requests set.
 
-####Metric:
+#### Metric:
 Metric is calculated basing on request's floor, direction and cart's floor and direction:
 - When cart is busy its metric has lowest possible value - 0. Busy means that cart has too many requests
 when compared to overall amount of requests in system.
@@ -45,7 +46,7 @@ metric is highest possible.
 - When cart is heading away from the call then metric is second worst possible.
 Besides two worst cases metrics considers the distance between floors and building's floors amount.
 
-####Requests sets:
+#### Requests sets:
 Each cart has two sets of request - those above current floor and those below.
 If cart is heading upwards then its checking and removing requests from upper floors set 
 when it encounters requested floors. 
@@ -63,7 +64,7 @@ which will not be serviced even forever). Biggest disadvantage of used algorithm
 recently serviced floors could wait a little longer if there are no carts nearby, because 
 cart that visited them is now going in the opposite way and probably won't be back quickly.
 
-####Other
+#### Other
 The idea of busy cart was introduced in order to avoid using the first carts in list for 
 too many requests, while the other carts would be idle for most of the time.
 
